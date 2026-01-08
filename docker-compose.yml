@@ -1,0 +1,47 @@
+services:
+  dev:
+    build: .
+    image: dev-env:latest
+    container_name: dev-env
+    hostname: dev
+    stdin_open: true
+    tty: true
+    init: true
+    restart: unless-stopped
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: "2"
+    
+    # Keep container running
+    command: tail -f /dev/null
+    
+    volumes:
+      # Projects
+      - dev-projects:/root/dev
+      
+      # Config (gh, nvim, etc.)
+      - dev-config:/root/.config
+      
+      # Local data (nvim plugins, etc.)
+      - dev-local:/root/.local
+      
+      # Cache (pnpm, nvim cache)
+      - dev-cache:/root/.cache
+      
+      # Go workspace
+      - dev-go:/root/go
+      
+      # Oh My Zsh
+      - dev-ohmyzsh:/root/.oh-my-zsh
+
+volumes:
+  dev-projects:
+  dev-config:
+  dev-local:
+  dev-cache:
+  dev-go:
+  dev-ohmyzsh:
