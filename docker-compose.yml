@@ -1,9 +1,9 @@
 services:
-  dev:
+  clawdbot-dev:
     build: .
-    image: dev-env:latest
-    container_name: dev-env
-    hostname: dev
+    image: clawdbot-dev:latest
+    container_name: clawdbot-dev
+    hostname: clawdbot-dev
     stdin_open: true
     tty: true
     init: true
@@ -21,27 +21,27 @@ services:
     
     volumes:
       # Projects
-      - dev-projects:/root/dev
+      - clawdbot-dev-projects:/root/dev
       
       # Config (gh, nvim, etc.)
-      - dev-config:/root/.config
+      - clawdbot-dev-config:/root/.config
       
       # Local data (nvim plugins, etc.)
-      - dev-local:/root/.local
+      - clawdbot-dev-local:/root/.local
       
       # Cache (pnpm, nvim cache)
-      - dev-cache:/root/.cache
+      - clawdbot-dev-cache:/root/.cache
       
       # Go workspace
-      - dev-go:/root/go
+      - clawdbot-dev-go:/root/go
       
       # Oh My Zsh
-      - dev-ohmyzsh:/root/.oh-my-zsh
+      - clawdbot-dev-ohmyzsh:/root/.oh-my-zsh
 
 volumes:
-  dev-projects:
-  dev-config:
-  dev-local:
-  dev-cache:
-  dev-go:
-  dev-ohmyzsh:
+  clawdbot-dev-projects:
+  clawdbot-dev-config:
+  clawdbot-dev-local:
+  clawdbot-dev-cache:
+  clawdbot-dev-go:
+  clawdbot-dev-ohmyzsh:
